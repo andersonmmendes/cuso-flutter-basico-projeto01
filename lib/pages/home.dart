@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: const Text('Home'),
       ),
       body: ValueListenableBuilder<List<PostModel>>(
         valueListenable: _controller.posts,
@@ -33,10 +33,14 @@ class _HomeState extends State<Home> {
             itemCount: list.length,
             itemBuilder: (_, index) => ListTile(
               leading: Text(list[index].id.toString()),
-              trailing: Icon(Icons.arrow_forward),
+              trailing: const Icon(Icons.arrow_forward),
               title: Text(list[index].title),
+              onTap: () => Navigator.of(context).pushNamed(
+                '/details',
+                arguments: list[index],
+              ),
             ),
-            separatorBuilder: (_, __) => Divider(),
+            separatorBuilder: (_, __) => const Divider(),
           );
         },
       ),
